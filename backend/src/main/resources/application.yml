@@ -3,13 +3,13 @@ spring:
   application:
     name: backend
 
-  # 数据库连接池配置
+  # 数据库连接池配置（支持环境变量覆盖，默认值为本地开发配置）
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/exam_system?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: 123456
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/exam_system?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
     # Druid 详细配置
     druid:
       initial-size: 5
@@ -23,9 +23,9 @@ spring:
       test-on-borrow: false
       test-on-return: false
 
-# 服务器端口
+# 服务器端口（Railway 等平台通过 PORT 环境变量指定）
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 # MyBatis Plus 配置
 mybatis-plus:
