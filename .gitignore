@@ -1,0 +1,14 @@
+# Java 后端常见忽略
+*.class
+target/
+.idea/
+*.iml
+
+# 前端常见忽略（根据技术栈调整，如 Node.js 项目）
+node_modules/
+dist/
+.env.local
+
+# 通用系统文件
+.DS_Store
+Thumbs.db

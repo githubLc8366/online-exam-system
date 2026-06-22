@@ -1,0 +1,46 @@
+# Spring Boot 核心配置
+spring:
+  application:
+    name: backend
+
+  # 数据库连接池配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/exam_system?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    # Druid 详细配置
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+# 服务器端口
+server:
+  port: 8080
+
+# MyBatis Plus 配置
+mybatis-plus:
+  type-aliases-package: com.hbnu.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 自定义配置
+auth:
+  whitelist:
+    - /api/login
+    - /api/health
+    - /api/session/list
+    - /api/session/detail/**
+    - /api/session/monitor/**
+#    - /api/dashboard/**
+#    - /api/user/list-by-class
